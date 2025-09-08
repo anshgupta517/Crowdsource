@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import {
     ISSUE_CATEGORIES,
     MOCK_ISSUES,
@@ -15,11 +16,6 @@ import ReportIssueScreen from './components/citizen/ReportIssueScreen';
 import MyReportsScreen from './components/citizen/MyReportsScreen';
 import IssueDetailScreen from './components/citizen/IssueDetailScreen';
 import AdminDashboard from './components/admin/AdminDashboard';
-import AdminIssuesScreen from './components/admin/AdminIssuesScreen';
-import AdminIssueDetailScreen from './components/admin/AdminIssueDetailScreen';
-import AdminMapScreen from './components/admin/AdminMapScreen';
-import AdminWorkersScreen from './components/admin/AdminWorkersScreen';
-import AdminAnalyticsScreen from './components/admin/AdminAnalyticsScreen';
 import WorkerDashboard from './components/worker/WorkerDashboard';
 import WorkerTaskDetail from './components/worker/WorkerTaskDetail';
 
@@ -27,22 +23,67 @@ import WorkerTaskDetail from './components/worker/WorkerTaskDetail';
 import { Clock, CheckCircle, AlertTriangle, UserCheck } from 'lucide-react';
 
 const CivicIssueApp = () => {
-  const [currentRole, setCurrentRole] = useState('citizen'); // citizen, admin, worker
-  const [currentScreen, setCurrentScreen] = useState('dashboard');
-  const [issues, setIssues] = useState(MOCK_ISSUES);
-  const [workers, setWorkers] = useState(MOCK_WORKERS);
-  const [selectedIssue, setSelectedIssue] = useState(null);
-  const [newIssue, setNewIssue] = useState({
-    title: '',
-    category: '',
-    subcategory: '',
-    description: '',
-    location: '',
-    photo: null
+  const [currentRole, setCurrentRole] = useState(() => localStorage.getItem('currentRole') || 'citizen');
+  const [currentScreen, setCurrentScreen] = useState(() => localStorage.getItem('currentScreen') || 'dashboard');
+  const [issues, setIssues] = useState(() => {
+    const savedIssues = localStorage.getItem('issues');
+    return savedIssues ? JSON.parse(savedIssues) : MOCK_ISSUES;
   });
-  const [reportStep, setReportStep] = useState(1);
-  const [filterStatus, setFilterStatus] = useState('all');
-  const [filterCategory, setFilterCategory] = useState('all');
+  const [workers, setWorkers] = useState(() => {
+    const savedWorkers = localStorage.getItem('workers');
+    return savedWorkers ? JSON.parse(savedWorkers) : MOCK_WORKERS;
+  });
+  const [selectedIssue, setSelectedIssue] = useState(null);
+  const [newIssue, setNewIssue] = useState(() => {
+    const savedNewIssue = localStorage.getItem('newIssue');
+    return savedNewIssue ? JSON.parse(savedNewIssue) : {
+      title: '',
+      category: '',
+      subcategory: '',
+      description: '',
+      location: '',
+      photo: null
+    };
+  });
+  const [reportStep, setReportStep] = useState(() => {
+    const savedReportStep = localStorage.getItem('reportStep');
+    return savedReportStep ? parseInt(savedReportStep) : 1;
+  });
+  const [filterStatus, setFilterStatus] = useState(() => localStorage.getItem('filterStatus') || 'all');
+  const [filterCategory, setFilterCategory] = useState(() => localStorage.getItem('filterCategory') || 'all');
+
+  // Persist state to localStorage
+  useEffect(() => {
+    localStorage.setItem('issues', JSON.stringify(issues));
+  }, [issues]);
+
+  useEffect(() => {
+    localStorage.setItem('workers', JSON.stringify(workers));
+  }, [workers]);
+
+  useEffect(() => {
+    localStorage.setItem('currentRole', currentRole);
+  }, [currentRole]);
+
+  useEffect(() => {
+    localStorage.setItem('currentScreen', currentScreen);
+  }, [currentScreen]);
+
+  useEffect(() => {
+    localStorage.setItem('newIssue', JSON.stringify(newIssue));
+  }, [newIssue]);
+
+  useEffect(() => {
+    localStorage.setItem('reportStep', reportStep.toString());
+  }, [reportStep]);
+
+  useEffect(() => {
+    localStorage.setItem('filterStatus', filterStatus);
+  }, [filterStatus]);
+
+  useEffect(() => {
+    localStorage.setItem('filterCategory', filterCategory);
+  }, [filterCategory]);
 
   // Navigation functions
   const navigateTo = (screen) => setCurrentScreen(screen);
@@ -73,6 +114,7 @@ const CivicIssueApp = () => {
         ? { ...issue, status: 'assigned', assignedTo: worker.name }
         : issue
     ));
+    toast.success(`Issue assigned to ${worker.name}`);
   };
 
   const updateIssueStatus = (issueId, newStatus) => {
@@ -81,6 +123,7 @@ const CivicIssueApp = () => {
         ? { ...issue, status: newStatus }
         : issue
     ));
+    toast.success(`Issue status updated to ${newStatus.replace('-', ' ')}`);
   };
 
   const handleCoreport = (issueId) => {
@@ -89,6 +132,7 @@ const CivicIssueApp = () => {
         ? { ...issue, coreports: issue.coreports + 1 }
         : issue
     ));
+    toast.success('Co-reported successfully!');
   };
 
   // Report issue functions (citizen)
@@ -122,6 +166,7 @@ const CivicIssueApp = () => {
     setCurrentScreen('dashboard');
     setReportStep(1);
     setNewIssue({ title: '', category: '', subcategory: '', description: '', location: '', photo: null });
+    toast.success('Issue reported successfully!');
   };
 
   // Utility functions
@@ -255,6 +300,7 @@ const CivicIssueApp = () => {
 
   return (
     <div className={currentRole === 'admin' ? 'bg-gray-100 min-h-screen' : 'max-w-md mx-auto bg-white text-black min-h-screen'}>
+      <Toaster position="bottom-center" />
       {renderScreen()}
     </div>
   );
