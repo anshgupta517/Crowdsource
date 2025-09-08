@@ -21,13 +21,13 @@ const WorkerDashboard = ({
                 onClick={() => switchRole('citizen')}
                 className="px-3 py-1 bg-white text-black bg-opacity-20 rounded-full text-xs"
               >
-                Citizen
+                Citizen Prototype
               </button>
               <button 
                 onClick={() => switchRole('admin')}
                 className="px-3 py-1 bg-white text-black bg-opacity-20 rounded-full text-xs"
               >
-                Admin
+                Admin Prototype
               </button>
             </div>
           </div>

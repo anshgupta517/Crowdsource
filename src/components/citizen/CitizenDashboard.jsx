@@ -14,13 +14,13 @@ const CitizenDashboard = ({
     <div className="min-h-screen bg-gray-50">
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-xl font-bold">Civic Reporter</h1>
+          <h1 className="text-l font-bold">Civic Reporter(citizen app)</h1>
           <div className="flex gap-2">
             <button 
               onClick={() => switchRole('admin')}
               className="px-3 py-1 bg-white text-black bg-opacity-20 rounded-full text-xs"
             >
-              Admin
+              See Admin Prototype
             </button>
             <button className="p-2 bg-white text-black bg-opacity-20 rounded-full">
               <Bell className="w-5 h-5" />
