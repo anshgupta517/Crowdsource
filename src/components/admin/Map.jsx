@@ -172,10 +172,6 @@ const MapDemo = () => {
     <div style={{ padding: '20px', maxWidth: '1000px', margin: '0 auto' }}>
       <div style={{ marginBottom: '20px' }}>
         <h2>Map - Durg, Chhattisgarh</h2>
-        <p style={{ color: '#666', fontSize: '14px' }}>
-          Current Issues: {currentIssues.length} | 
-          Default Location: Durg, Chhattisgarh
-        </p>
       </div>
       
       <OpenLayersMap issues={currentIssues} />
