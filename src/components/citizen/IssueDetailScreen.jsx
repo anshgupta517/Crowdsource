@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, ThumbsUp } from 'lucide-react';
 import { ISSUE_CATEGORIES } from '../../data/mockData';
 
@@ -8,7 +8,23 @@ const IssueDetailScreen = ({
   handleCoreport,
   getStatusIcon,
   getStatusColor,
-}) => (
+}) => {
+  const [coReportCount, setCoReportCount] = useState(selectedIssue?.coreports);
+  const [hasCoReported, setHasCoReported] = useState(false);
+
+  useEffect(() => {
+    setCoReportCount(selectedIssue?.coreports);
+  }, [selectedIssue]);
+
+  const handleCoReportClick = () => {
+    if (!hasCoReported) {
+      setCoReportCount(coReportCount + 1);
+      handleCoreport(selectedIssue?.id);
+      setHasCoReported(true);
+    }
+  };
+
+  return (
     <div className="min-h-screen bg-gray-50">
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 flex items-center">
         <button onClick={goBack} className="mr-4">
@@ -38,15 +54,16 @@ const IssueDetailScreen = ({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <ThumbsUp className="w-5 h-5 text-blue-500" />
-              <span className="text-lg font-semibold">{selectedIssue?.coreports} people</span>
+              <span className="text-lg font-semibold">{coReportCount} people</span>
               <span className="text-gray-600">reported this too</span>
             </div>
             <button
-              onClick={() => handleCoreport(selectedIssue?.id)}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 flex items-center gap-2"
+              onClick={handleCoReportClick}
+              disabled={hasCoReported}
+              className={`px-4 py-2 rounded-lg flex items-center gap-2 ${hasCoReported ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-600'}`}
             >
               <ThumbsUp className="w-4 h-4" />
-              Co-report
+              {hasCoReported ? 'Co-reported' : 'Co-report'}
             </button>
           </div>
         </div>
@@ -68,5 +85,6 @@ const IssueDetailScreen = ({
       </div>
     </div>
   );
+};
 
 export default IssueDetailScreen;

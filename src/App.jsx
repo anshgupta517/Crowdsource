@@ -24,7 +24,7 @@ import { Clock, CheckCircle, AlertTriangle, UserCheck } from 'lucide-react';
 
 const CivicIssueApp = () => {
   const [currentRole, setCurrentRole] = useState(() => localStorage.getItem('currentRole') || 'citizen');
-  const [currentScreen, setCurrentScreen] = useState(() => localStorage.getItem('currentScreen') || 'dashboard');
+  const [currentScreen, setCurrentScreen] = useState('dashboard');
   const [issues, setIssues] = useState(() => {
     const savedIssues = localStorage.getItem('issues');
     return savedIssues ? JSON.parse(savedIssues) : MOCK_ISSUES;
@@ -65,9 +65,7 @@ const CivicIssueApp = () => {
     localStorage.setItem('currentRole', currentRole);
   }, [currentRole]);
 
-  useEffect(() => {
-    localStorage.setItem('currentScreen', currentScreen);
-  }, [currentScreen]);
+  
 
   useEffect(() => {
     localStorage.setItem('newIssue', JSON.stringify(newIssue));

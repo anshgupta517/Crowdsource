@@ -1,17 +1,12 @@
 import React from 'react';
-import { Map, Pin } from 'lucide-react';
+import { Pin } from 'lucide-react';
+import Map from './Map';
 
 const AdminMapScreen = ({ issues }) => (
   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
     {/* Map View */}
     <div className="lg:col-span-2 bg-white rounded-lg shadow h-[calc(100vh-12rem)]">
-      <div className="w-full h-full flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg">
-        <div className="text-center">
-          <Map className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <p className="text-gray-600 font-semibold">Interactive Map</p>
-          <p className="text-sm text-gray-400">Showing {issues.length} issues across the city</p>
-        </div>
-      </div>
+      <Map issues={issues} />
     </div>
 
     {/* Issues List & Legend */}
