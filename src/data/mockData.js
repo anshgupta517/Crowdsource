@@ -42,14 +42,14 @@ export const MOCK_ISSUES = [
     title: 'Large Pothole on Main Street',
     category: 'Road & Traffic',
     subcategory: 'Potholes',
-    description: 'Deep pothole causing traffic issues near Metro station',
-    location: 'Main Street, Sector 15, Noida',
+    description: 'Deep pothole causing traffic issues near Durg Railway Station',
+    location: 'Station Road, Durg',
     status: 'reported',
     coreports: 12,
     date: '2025-01-15',
     priority: 'high',
     assignedTo: null,
-    coordinates: { lat: 28.5355, lng: 77.3910 }
+    coordinates: { lat: 21.195, lng: 81.285 }
   },
   {
     id: 2,
@@ -57,13 +57,13 @@ export const MOCK_ISSUES = [
     category: 'Cleanliness',
     subcategory: 'Overflowing Bins',
     description: 'Garbage bin overflowing for 3 days, attracting stray animals',
-    location: 'Park Avenue, Sector 12, Gurgaon',
+    location: 'Civic Center, Bhilai',
     status: 'assigned',
     coreports: 8,
     date: '2025-01-14',
     priority: 'medium',
     assignedTo: 'Raj Kumar',
-    coordinates: { lat: 28.4595, lng: 77.0266 }
+    coordinates: { lat: 21.21, lng: 81.36 }
   },
   {
     id: 3,
@@ -71,13 +71,13 @@ export const MOCK_ISSUES = [
     category: 'Public Safety',
     subcategory: 'Broken Streetlights',
     description: 'Street light not working since last week, safety concern',
-    location: 'Green Park, Sector 18, Delhi',
+    location: 'Supela, Bhilai',
     status: 'resolved',
     coreports: 5,
     date: '2025-01-12',
     priority: 'high',
     assignedTo: 'Amit Singh',
-    coordinates: { lat: 28.5594, lng: 77.2070 }
+    coordinates: { lat: 21.20, lng: 81.34 }
   },
   {
     id: 4,
@@ -85,13 +85,13 @@ export const MOCK_ISSUES = [
     category: 'Public Utilities',
     subcategory: 'Water Supply',
     description: 'Major water leakage from pipeline causing waterlogging',
-    location: 'MG Road, Sector 28, Gurgaon',
+    location: 'Risali, Bhilai',
     status: 'in-progress',
     coreports: 15,
     date: '2025-01-16',
     priority: 'critical',
     assignedTo: 'Priya Sharma',
-    coordinates: { lat: 28.4672, lng: 77.0291 }
+    coordinates: { lat: 21.18, lng: 81.38 }
   },
   {
     id: 5,
@@ -99,13 +99,13 @@ export const MOCK_ISSUES = [
     category: 'Public Infrastructure',
     subcategory: 'Parks Maintenance',
     description: 'Broken swings and damaged benches in children park',
-    location: 'City Park, Sector 22, Noida',
+    location: 'Padmanabhpur, Durg',
     status: 'reported',
     coreports: 3,
     date: '2025-01-13',
     priority: 'low',
     assignedTo: null,
-    coordinates: { lat: 28.5672, lng: 77.3567 }
+    coordinates: { lat: 21.18, lng: 81.29 }
   }
 ];
 
