@@ -1,6 +1,8 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
-import { ISSUE_CATEGORIES } from '../../data/mockData';
+import { ISSUE_CATEGORIES ,MOCK_ISSUES} from '../../data/mockData';
+import Image from '../Image';
+import assets from '../../assets/assets';
 
 const AdminIssueDetailScreen = ({
   goBack,
@@ -40,7 +42,17 @@ const AdminIssueDetailScreen = ({
 
         <p className="text-gray-700 mb-6">{selectedIssue?.description}</p>
 
-        <div className="text-sm text-gray-500 border-t pt-4">
+        <div className='w-70 h-50 my-4'>
+          <Image
+            src={MOCK_ISSUES[selectedIssue?.id - 1]?.image}
+            alt={selectedIssue?.title}
+            height={200}
+            width={200}
+            className="rounded-lg"
+          />
+        </div>
+
+        <div className="text-sm text-gray-500 border-t pt-4 mt-60">
           Reported on {selectedIssue?.date} • {selectedIssue?.coreports} co-reports
         </div>
       </div>
@@ -53,6 +65,16 @@ const AdminIssueDetailScreen = ({
             <div>
               <p className="font-semibold text-gray-700">Assigned to: {selectedIssue.assignedTo}</p>
               <p className="text-sm text-gray-500">{ISSUE_CATEGORIES[selectedIssue.category]?.department}</p>
+
+              <div className='mt-2 w-40 h-40 rounded-lg flex justify-center items-center'>
+                <Image
+                  src={assets.sureshWorker}
+                  alt={selectedIssue?.title}
+                  height={200}
+                  width={200}
+                  className="rounded-lg"
+                />
+              </div>
             </div>
           ) : (
             <div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, ThumbsUp } from 'lucide-react';
-import { ISSUE_CATEGORIES } from '../../data/mockData';
+import { ISSUE_CATEGORIES ,MOCK_ISSUES} from '../../data/mockData';
+import Image from '../Image';
 
 const IssueDetailScreen = ({
   goBack,
@@ -48,7 +49,15 @@ const IssueDetailScreen = ({
             </span>
           </div>
         </div>
-
+       <div className='flex justify-center items-center mt-4 h-70 w-70 mx-auto rounded-lg border-2 border-amber-400'>
+         <Image
+          src={MOCK_ISSUES[selectedIssue?.id - 1]?.image}
+          alt={selectedIssue?.title}
+          height={70}
+          width={70}
+          className="rounded-lg"
+        />
+       </div>
         <div className="bg-white text-black p-4 rounded-lg shadow-sm">
           <h3 className="font-medium mb-3">Community Support</h3>
           <div className="flex items-center justify-between">
