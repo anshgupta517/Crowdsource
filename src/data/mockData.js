@@ -1,3 +1,5 @@
+import assets from "../assets/assets";
+
 export const ISSUE_CATEGORIES = {
   'Road & Traffic': {
     subcategories: ['Potholes', 'Broken Roads', 'Traffic Signals', 'Illegal Parking'],
@@ -49,7 +51,8 @@ export const MOCK_ISSUES = [
     date: '2025-01-15',
     priority: 'high',
     assignedTo: null,
-    coordinates: { lat: 21.195, lng: 81.285 }
+    coordinates: { lat: 21.195, lng: 81.285 },
+    image: assets.pothHole
   },
   {
     id: 2,
@@ -63,7 +66,8 @@ export const MOCK_ISSUES = [
     date: '2025-01-14',
     priority: 'medium',
     assignedTo: 'Raj Kumar',
-    coordinates: { lat: 21.21, lng: 81.36 }
+    coordinates: { lat: 21.21, lng: 81.36 },
+    image: assets.overloadedDustbin
   },
   {
     id: 3,
@@ -77,7 +81,8 @@ export const MOCK_ISSUES = [
     date: '2025-01-12',
     priority: 'high',
     assignedTo: 'Amit Singh',
-    coordinates: { lat: 21.20, lng: 81.34 }
+    coordinates: { lat: 21.20, lng: 81.34 },
+    image: assets.brokenLamp
   },
   {
     id: 4,
@@ -91,7 +96,8 @@ export const MOCK_ISSUES = [
     date: '2025-01-16',
     priority: 'critical',
     assignedTo: 'Priya Sharma',
-    coordinates: { lat: 21.18, lng: 81.38 }
+    coordinates: { lat: 21.18, lng: 81.38 },
+    image: assets.waterLeakage
   },
   {
     id: 5,
@@ -105,7 +111,8 @@ export const MOCK_ISSUES = [
     date: '2025-01-13',
     priority: 'low',
     assignedTo: null,
-    coordinates: { lat: 21.18, lng: 81.29 }
+    coordinates: { lat: 21.18, lng: 81.29 },
+    image: assets.brokenPark
   }
 ];
 

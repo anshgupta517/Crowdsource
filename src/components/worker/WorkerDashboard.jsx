@@ -1,5 +1,6 @@
 import React from 'react';
 import { User, CheckCircle, ThumbsUp } from 'lucide-react';
+import assets from '../../assets/assets';
 
 const WorkerDashboard = ({
   issues,
@@ -34,7 +35,7 @@ const WorkerDashboard = ({
 
           <div className="text-center mb-4">
             <div className="w-16 h-16 bg-white text-black bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-2">
-              <User className="w-8 h-8" />
+              <img src={assets.sureshWorker} className='rounded-full' alt="" />
             </div>
             <h2 className="text-lg font-medium">Raj Kumar</h2>
             <p className="text-sm opacity-90">Sanitation Department</p>
