@@ -13,7 +13,7 @@ const AdminLayout = ({ children, activeScreen, navigateTo, switchRole }) => {
   ];
 
   const Sidebar = () => (
-    <div className="w-64 bg-gray-800 text-white flex flex-col">
+    <div className="w-64 bg-gray-950 text-white flex flex-col">
       <div className="p-6 text-2xl font-bold border-b border-gray-700">
         Admin Panel
       </div>
@@ -25,7 +25,7 @@ const AdminLayout = ({ children, activeScreen, navigateTo, switchRole }) => {
               navigateTo(item.id);
               setSidebarOpen(false); // Close sidebar on navigation
             }}
-            className={`w-full flex items-center gap-3 px-4 py-2 rounded-lg text-left transition-colors ${
+            className={`w-full flex items-center gap-3 px-4 py-2 rounded-lg text-left transition-all duration-200 hover:scale-110 text-white ${
               activeScreen === item.id
                 ? 'bg-indigo-600'
                 : 'hover:bg-gray-700'
