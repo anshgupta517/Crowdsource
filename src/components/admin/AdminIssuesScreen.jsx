@@ -51,7 +51,7 @@ const AdminIssuesScreen = ({
         <div
           key={issue.id}
           onClick={() => setSelectedIssue(issue)}
-          className="p-4 rounded-lg border cursor-pointer hover:shadow-md transition-all duration-200 max-w-7xl mx-auto hover:scale-105 border-indigo-200 hover:border-indigo-400 hover:bg-gray-200"
+          className="p-4 rounded-lg border cursor-pointer hover:shadow-md transition-all duration-200 max-w-7xl mx-auto hover:scale-101 border-indigo-200 hover:border-indigo-400 hover:bg-gray-200"
         >
           <div className="flex items-start justify-between mb-2">
             <div className="flex-1">
