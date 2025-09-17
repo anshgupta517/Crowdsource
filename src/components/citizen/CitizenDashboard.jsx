@@ -12,8 +12,8 @@ const CitizenDashboard = ({
   getStatusIcon,
   getStatusColor,
 }) => (
-  <div className="min-h-screen bg-gray-50">
-    <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4">
+  <div className="min-h-screen bg-gray-150">
+    <div className="bg-gradient-to-t from-blue-600 to-indigo-400 text-white p-4">
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-l font-bold">Civic Reporter(citizen app)</h1>
         <div className="flex gap-2">
@@ -50,14 +50,14 @@ const CitizenDashboard = ({
       <div className="grid grid-cols-2 gap-4 mb-6">
         <button
           onClick={() => navigateTo('report-issue')}
-          className="bg-blue-500 text-white p-4 rounded-xl flex flex-col items-center hover:bg-blue-600 transition-colors"
+          className="bg-indigo-500 text-white p-4 rounded-xl flex flex-col items-center hover:bg-indigo-600 hover:scale-105 transition-all duration-200"
         >
           <Plus className="w-8 h-8 mb-2" />
           <span className="font-medium">Report Issue</span>
         </button>
         <button
           onClick={() => navigateTo('my-reports')}
-          className="bg-green-500 text-white p-4 rounded-xl flex flex-col items-center hover:bg-green-600 transition-colors"
+          className="bg-emerald-500 text-white p-4 rounded-xl flex flex-col items-center hover:bg-emerald-400  hover:scale-105 transition-all"
         >
           <User className="w-8 h-8 mb-2" />
           <span className="font-medium">My Reports</span>
@@ -73,7 +73,7 @@ const CitizenDashboard = ({
               setSelectedIssue(issue);
               setCurrentScreen('issue-detail');
             }}
-            className="bg-white text-black p-4 rounded-lg shadow-sm border cursor-pointer hover:shadow-md transition-shadow"
+            className="bg-gray-100 text-black p-4 rounded-lg shadow-sm border-1 border-indigo-200 cursor-pointer hover:shadow-md hover:scale-105 hover:border-indigo-300 transition-all duration-200"
           >
             <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
@@ -100,8 +100,8 @@ const CitizenDashboard = ({
       <div className='flex justify-center items-center mt-6'>
         <p className='text-sm text-gray-500'>Scan the QR code to view on mobile</p>
       </div>
-      <div className='flex justify-center items-center'>
-        <Image src={assets.qrcode} alt='qrcode'/>
+      <div className='flex justify-center items-center p-2 mt-2 hover:scale-105 transition-all duration-200'>
+        <Image src={assets.qrcode} alt='qrcode' className="rounded-lg border-2 border-emerald-300" />
       </div>
 
     </div>

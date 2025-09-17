@@ -14,7 +14,7 @@ const ReportIssueScreen = ({
     if (reportStep === 1) {
       return (
         <div className="min-h-screen bg-gray-50">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 flex items-center">
+          <div className="bg-gradient-to-t from-blue-600 to-indigo-400 text-white p-4 flex items-center">
             <button onClick={goBack} className="mr-4">
               <ArrowLeft className="w-6 h-6" />
             </button>
@@ -28,7 +28,7 @@ const ReportIssueScreen = ({
                 <button
                   key={category}
                   onClick={() => handleCategorySelect(category)}
-                  className="w-full bg-white text-black p-4 rounded-lg shadow-sm border hover:border-blue-300 hover:shadow-md transition-all text-left"
+                  className="w-full bg-white text-black p-4 rounded-lg shadow-sm border-1 border-indigo-200 hover:shadow-md  text-left hover:scale-105 hover:border-indigo-300 transition-all duration-200"
                 >
                   <div className="flex items-center">
                     <span className="text-2xl mr-4">{info.icon}</span>
@@ -48,7 +48,7 @@ const ReportIssueScreen = ({
     if (reportStep === 2) {
       return (
         <div className="min-h-screen bg-gray-50">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 flex items-center">
+          <div className="bg-gradient-to-t from-blue-600 to-indigo-400 text-white p-4 flex items-center">
             <button onClick={goBack} className="mr-4">
               <ArrowLeft className="w-6 h-6" />
             </button>
@@ -62,7 +62,7 @@ const ReportIssueScreen = ({
                 <button
                   key={subcategory}
                   onClick={() => handleSubcategorySelect(subcategory)}
-                  className="w-full bg-white text-black p-4 rounded-lg shadow-sm border hover:border-blue-300 hover:shadow-md transition-all text-left font-medium"
+                  className="w-full bg-white text-black p-4 rounded-lg shadow-sm  border-1 border-indigo-200 hover:border-indigo-300 hover:shadow-md transition-all text-left font-medium hover:scale-105 duration-200"
                 >
                   {subcategory}
                 </button>
@@ -76,7 +76,7 @@ const ReportIssueScreen = ({
     if (reportStep === 3) {
       return (
         <div className="min-h-screen bg-gray-50">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 flex items-center">
+          <div className="bg-gradient-to-t from-blue-600 to-indigo-400 text-white p-4 flex items-center">
             <button onClick={goBack} className="mr-4">
               <ArrowLeft className="w-6 h-6" />
             </button>
@@ -91,7 +91,7 @@ const ReportIssueScreen = ({
                   {newIssue.imagePreview ? (
                     <img src={newIssue.imagePreview} alt="Issue Preview" className="mx-auto h-32 w-32 object-cover rounded-md" />
                   ) : (
-                    <Camera className="mx-auto h-12 w-12 text-gray-400" />
+                    <Camera className="mx-auto h-12 w-12 text-blue-400" />
                   )}
                   <div className="flex text-sm text-gray-600">
                     <label
@@ -147,7 +147,7 @@ const ReportIssueScreen = ({
                   placeholder="Enter or detect location..."
                   className="flex-1 p-3 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
-                <button className="px-4 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600">
+                <button className="px-4 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 hover:scale-105 transition-all duration-200 flex items-center justify-center">
                   <MapPin className="w-5 h-5" />
                 </button>
               </div>
@@ -155,7 +155,7 @@ const ReportIssueScreen = ({
 
             <button
               onClick={handleSubmitIssue}
-              className="w-full bg-blue-500 text-white p-4 rounded-lg font-medium hover:bg-blue-600 flex items-center justify-center"
+              className="w-full bg-gradient-to-tr from-emerald-500 to-blue-500 text-white p-4 rounded-lg font-medium hover:bg-gradient-to-br flex items-center justify-center hover:scale-105 transition-all duration-500 hover:shadow-lg ease-in-out"
             >
               <Send className="w-5 h-5 mr-2" />
               Submit Report

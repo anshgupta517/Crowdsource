@@ -10,7 +10,7 @@ const MyReportsScreen = ({
   getStatusColor,
 }) => (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 flex items-center">
+      <div className="bg-gradient-to-t from-blue-600 to-indigo-400 text-white p-4 flex items-center">
         <button onClick={goBack} className="mr-4">
           <ArrowLeft className="w-6 h-6" />
         </button>
@@ -26,7 +26,7 @@ const MyReportsScreen = ({
                 setSelectedIssue(issue);
                 setCurrentScreen('issue-detail');
               }}
-              className="bg-white text-black p-4 rounded-lg shadow-sm border cursor-pointer hover:shadow-md transition-shadow"
+              className="bg-gray-100 text-black p-4 rounded-lg shadow-sm border cursor-pointer border-indigo-200 hover:shadow-md transition-all duration-200 hover:scale-105 hover:border-indigo-300"
             >
               <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">

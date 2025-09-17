@@ -22,4 +22,8 @@ export default defineConfig({
       'ol/style/Fill',
     ],
   },
+  server: {
+    port: 3000,
+    host:true,
+  },
 })
