@@ -1,17 +1,20 @@
 import React from 'react';
 import { ArrowLeft, ThumbsUp } from 'lucide-react';
 import { ISSUE_CATEGORIES } from '../../data/mockData';
+import BottomNavigation from './BottomNavigation';
+import { useNavigate } from 'react-router-dom';
 
 const MyReportsScreen = ({
   goBack,
   issues,
-  setSelectedIssue,
-  setCurrentScreen,
   getStatusColor,
-}) => (
-    <div className="min-h-screen bg-gray-50">
+}) => {
+  const navigate = useNavigate();
+  
+  return (
+    <div className="min-h-screen bg-gray-50 pb-20">
       <div className="bg-gradient-to-t from-blue-600 to-indigo-400 text-white p-4 flex items-center">
-        <button onClick={goBack} className="mr-4">
+        <button onClick={() => navigate('/')} className="mr-4">
           <ArrowLeft className="w-6 h-6" />
         </button>
         <h1 className="text-xl font-bold">My Reports</h1>
@@ -23,8 +26,9 @@ const MyReportsScreen = ({
             <div 
               key={issue.id}
               onClick={() => {
-                setSelectedIssue(issue);
-                setCurrentScreen('issue-detail');
+                // Store the selected issue in localStorage for the detail page
+                localStorage.setItem('selectedIssue', JSON.stringify(issue));
+                navigate(`/issue-detail/${issue.id}`);
               }}
               className="bg-gray-100 text-black p-4 rounded-lg shadow-sm border cursor-pointer border-indigo-200 hover:shadow-md transition-all duration-200 hover:scale-105 hover:border-indigo-300"
             >
@@ -49,7 +53,10 @@ const MyReportsScreen = ({
           ))}
         </div>
       </div>
+      
+      <BottomNavigation />
     </div>
   );
+};
 
 export default MyReportsScreen;
