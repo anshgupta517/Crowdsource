@@ -1,77 +1,89 @@
-import { Bell, Plus, User, ThumbsUp } from 'lucide-react';
+import { Bell, Plus, User, ThumbsUp, Globe } from 'lucide-react';
 import { ISSUE_CATEGORIES } from '../../data/mockData';
 import assets from '../../assets/assets';
-import Image from '../Image'
+import Image from '../image';
+import BottomNavigation from './BottomNavigation';
+import { useLanguage } from '../../i18n/index.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const CitizenDashboard = ({
   issues,
   navigateTo,
   switchRole,
-  setSelectedIssue,
-  setCurrentScreen,
   getStatusIcon,
   getStatusColor,
-}) => (
-  <div className="min-h-screen bg-gray-150">
-    <div className="bg-gradient-to-t from-blue-600 to-indigo-400 text-white p-4">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-l font-bold">Civic Reporter(citizen app)</h1>
-        <div className="flex gap-2">
-          <button
-            onClick={() => switchRole('admin')}
-            className="px-3 py-1 bg-white text-black bg-opacity-20 rounded-full text-xs"
-          >
-            See Admin Prototype
-          </button>
-          <button className="p-2 bg-white text-black bg-opacity-20 rounded-full">
-            <Bell className="w-5 h-5" />
-          </button>
+}) => {
+  const { t } = useLanguage();
+  const navigate = useNavigate();
+
+  return (
+    <div className="min-h-screen bg-gray-150 pb-20">
+      <div className="bg-gradient-to-t from-blue-600 to-indigo-400 text-white p-4">
+        <div className="flex items-center justify-between mb-4">
+          <h1 className="text-l font-bold">{t('dashboard.title')} ({t('dashboard.subtitle')})</h1>
+          <div className="flex gap-2">
+            <button
+              onClick={() => switchRole('admin')}
+              className="px-3 py-1 bg-white text-black bg-opacity-20 rounded-full text-xs"
+            >
+              See Admin Prototype
+            </button>
+            <button className="p-2 bg-white text-black bg-opacity-20 rounded-full">
+              <Bell className="w-5 h-5" />
+            </button>
+          </div>
         </div>
-      </div>
 
       <div className="grid grid-cols-3 gap-4">
         <div className="text-center">
           <div className="text-2xl font-bold">{issues.filter(i => i.status === 'reported').length}</div>
-          <div className="text-sm opacity-90">Active</div>
+          <div className="text-sm opacity-90">{t('dashboard.active')}</div>
         </div>
         <div className="text-center">
           <div className="text-2xl font-bold">{issues.filter(i => i.status === 'resolved').length}</div>
-          <div className="text-sm opacity-90">Resolved</div>
+          <div className="text-sm opacity-90">{t('dashboard.resolved')}</div>
         </div>
         <div className="text-center">
           <div className="text-2xl font-bold">{issues.reduce((sum, i) => sum + i.coreports, 0)}</div>
-          <div className="text-sm opacity-90">Co-reports</div>
+          <div className="text-sm opacity-90">{t('dashboard.coreports')}</div>
         </div>
       </div>
     </div>
 
     <div className="p-4">
       <h2 className="text-lg font-semibold mb-3">Quick Actions</h2>
-      <div className="grid grid-cols-2 gap-4 mb-6">
+      <div className="grid grid-cols-3 gap-4 mb-6">
         <button
-          onClick={() => navigateTo('report-issue')}
+          onClick={() => navigate('/report-issue')}
           className="bg-indigo-500 text-white p-4 rounded-xl flex flex-col items-center hover:bg-indigo-600 hover:scale-105 transition-all duration-200"
         >
           <Plus className="w-8 h-8 mb-2" />
-          <span className="font-medium">Report Issue</span>
+          <span className="font-medium">{t('dashboard.report_issue')}</span>
         </button>
         <button
-          onClick={() => navigateTo('my-reports')}
+          onClick={() => navigate('/my-reports')}
           className="bg-emerald-500 text-white p-4 rounded-xl flex flex-col items-center hover:bg-emerald-400  hover:scale-105 transition-all"
         >
           <User className="w-8 h-8 mb-2" />
-          <span className="font-medium">My Reports</span>
+          <span className="font-medium">{t('dashboard.my_reports')}</span>
+        </button>
+        <button
+          onClick={() => navigate('/transparency')}
+          className="bg-orange-500 text-white p-4 rounded-xl flex flex-col items-center hover:bg-orange-400  hover:scale-105 transition-all"
+        >
+          <Globe className="w-8 h-8 mb-2" />
+          <span className="font-medium">{t('transparency.title')}</span>
         </button>
       </div>
 
-      <h2 className="text-lg font-semibold mb-3">Recent Issues Nearby</h2>
+      <h2 className="text-lg font-semibold mb-3">{t('dashboard.recent_issues')}</h2>
       <div className="space-y-3">
         {issues.slice(0, 3).map(issue => (
           <div
             key={issue.id}
             onClick={() => {
-              setSelectedIssue(issue);
-              setCurrentScreen('issue-detail');
+              localStorage.setItem('selectedIssue', JSON.stringify(issue));
+              navigate(`/issue-detail/${issue.id}`);
             }}
             className="bg-gray-100 text-black p-4 rounded-lg shadow-sm border-1 border-indigo-200 cursor-pointer hover:shadow-md hover:scale-105 hover:border-indigo-300 transition-all duration-200"
           >
@@ -105,7 +117,10 @@ const CitizenDashboard = ({
       </div>
 
     </div>
+    
+    <BottomNavigation />
   </div>
-);
+  );
+};
 
 export default CitizenDashboard;
