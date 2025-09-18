@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ThumbsUp } from 'lucide-react';
 import { ISSUE_CATEGORIES, MOCK_ISSUES } from '../../data/mockData';
 import { useLanguage } from '../../i18n/index.jsx';
-import Image from '../../components/image';
+import Image from '../../components/Image.jsx';
 
 const IssueDetailPage = () => {
   const { id } = useParams();

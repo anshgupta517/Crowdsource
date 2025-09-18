@@ -1,7 +1,7 @@
 import { Bell, Plus, User, ThumbsUp, Globe } from 'lucide-react';
 import { ISSUE_CATEGORIES } from '../../data/mockData';
 import assets from '../../assets/assets';
-import Image from '../image';
+import Image from '../Image.jsx';
 import BottomNavigation from './BottomNavigation';
 import { useLanguage } from '../../i18n/index.jsx';
 import { useNavigate } from 'react-router-dom';
