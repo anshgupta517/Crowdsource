@@ -25,6 +25,10 @@ import { Clock, CheckCircle, AlertTriangle, UserCheck } from 'lucide-react';
 const CivicIssueApp = () => {
   const [currentRole, setCurrentRole] = useState(() => localStorage.getItem('currentRole') || 'citizen');
   const [currentScreen, setCurrentScreen] = useState('dashboard');
+
+  // storing screen history
+  const [screenHistory, setScreenHistory] = useState(["dashboard"]);
+
   const [issues, setIssues] = useState(() => {
     const savedIssues = localStorage.getItem('issues');
     return savedIssues ? JSON.parse(savedIssues) : MOCK_ISSUES;
@@ -83,26 +87,70 @@ const CivicIssueApp = () => {
     localStorage.setItem('filterCategory', filterCategory);
   }, [filterCategory]);
 
+//==============================[NAVIGATION WITH HISTORY STACK]==============================//
   // Navigation functions
-  const navigateTo = (screen) => setCurrentScreen(screen);
+ const navigateTo = (screen) => {
+  // Push a new history entry so the browser back button has something to pop
+  window.history.pushState({ screen }, "", window.location.href);
+
+  setScreenHistory((prev) => [...prev, screen]);
+  setCurrentScreen(screen);
+};
+    
   const switchRole = (role) => {
     setCurrentRole(role);
     setCurrentScreen('dashboard');
   };
 
-  const goBack = () => {
-    if (currentScreen === 'report-issue') {
-      if (reportStep > 1) {
-        setReportStep(reportStep - 1);
-      } else {
-        setCurrentScreen('dashboard');
-        setReportStep(1);
-        setNewIssue({ title: '', category: '', subcategory: '', description: '', location: '', photo: null });
-      }
+//===========================[ MODIFIED GO BACK BUTTON WITH HISTORI STACK]====================//
+const goBack = () => {
+  // console.log(reportStep);
+  if (currentScreen === "report-issue" && reportStep > 1) {
+    // Inside > step back
+    setReportStep(reportStep - 1);
+    return;
+  }
+  
+  // console.log(reportStep);
+  // use the screen history stack
+  setScreenHistory((prev) => {
+    if (prev.length > 1) {
+      const newHistory = [...prev];
+      newHistory.pop(); // remove current
+      const previousScreen = newHistory[newHistory.length - 1];
+      setCurrentScreen(previousScreen);
+      return newHistory;
     } else {
-      setCurrentScreen('dashboard');
+      // At dashboard
+      setCurrentScreen("dashboard");
+      setReportStep(1);
+      setNewIssue({
+        title: "",
+        category: "",
+        subcategory: "",
+        description: "",
+        location: "",
+        photo: null,
+      });
+      return ["dashboard"];
     }
+  });
+};
+
+///////////////////////////////////////////////////////////////////////////
+// ================= [ FOR ANDROID BACK BUTTON ] ==========================
+// back button handler
+useEffect(() => {
+  const handleBackButton = (event) => {
+    event.preventDefault();
+    goBack();
   };
+
+  window.addEventListener("popstate", handleBackButton);
+
+  return () => window.removeEventListener("popstate", handleBackButton);
+}, [currentScreen, reportStep]);
+//======================================================================//
 
   // Issue management functions
   const assignIssue = (issueId, workerId) => {
