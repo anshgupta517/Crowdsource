@@ -127,10 +127,10 @@ const OpenLayersMap = ({ issues = [] }) => {
     <div 
       ref={mapRef} 
       style={{ 
-        height: '500px', 
+        height: '100%', 
         width: '100%',
-        border: '1px solid #ddd',
-        borderRadius: '8px',
+        border: '1px solid #fff',
+        borderRadius: '4px',
         backgroundColor: '#f5f5f5'
       }}
     />
@@ -169,9 +169,9 @@ const MapDemo = () => {
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '1000px', margin: '0 auto' }}>
-      <div style={{ marginBottom: '20px' }}>
-        <h2>Map - Durg, Chhattisgarh</h2>
+    <div style={{ padding: '10px', maxWidth: '1000px', margin: '0 auto', height: '95%'}}>
+      <div style={{ marginBottom: '0' }}>
+        <h2 className='text-white'>Map - Durg, Chhattisgarh</h2>
       </div>
       
       <OpenLayersMap issues={currentIssues} />
