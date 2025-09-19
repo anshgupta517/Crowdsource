@@ -5,16 +5,23 @@ const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
-    return localStorage.getItem('language') || 'en';
+    const savedLang = localStorage.getItem('language') || 'en';
+    // Ensure the saved language exists in translations, fallback to 'en'
+    return translations[savedLang] ? savedLang : 'en';
   });
 
   const t = (key) => {
-    return translations[language][key] || key;
+    // Safe access with fallback to English and then to the key itself
+    const currentTranslations = translations[language] || translations['en'] || {};
+    return currentTranslations[key] || key;
   };
 
   const switchLanguage = (lang) => {
-    setLanguage(lang);
-    localStorage.setItem('language', lang);
+    // Only switch to supported languages
+    if (translations[lang]) {
+      setLanguage(lang);
+      localStorage.setItem('language', lang);
+    }
   };
 
   return (

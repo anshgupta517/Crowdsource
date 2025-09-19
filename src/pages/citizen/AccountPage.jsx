@@ -63,8 +63,8 @@ const AccountPage = () => {
           <div className="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-3">
             <User className="w-10 h-10" />
           </div>
-          <h2 className="text-lg font-semibold">John Doe</h2>
-          <p className="text-sm opacity-90">john.doe@email.com</p>
+          <h2 className="text-lg font-semibold">Sarvagya</h2>
+          <p className="text-sm opacity-90">Sarvagya.SIH2025@email.com</p>
           <p className="text-xs opacity-75">Member since Jan 2025</p>
         </div>
       </div>

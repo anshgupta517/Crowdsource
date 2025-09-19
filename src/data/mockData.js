@@ -44,7 +44,7 @@ export const MOCK_ISSUES = [
     title: 'Large Pothole on Main Street',
     category: 'Road & Traffic',
     subcategory: 'Potholes',
-    description: 'Deep pothole causing traffic issues near Durg Railway Station',
+    description: 'दुर्ग रेलवे स्टेशन के पास गहरे गड्ढे से यातायात में दिक्कत',
     location: 'Station Road, Durg',
     status: 'reported',
     coreports: 12,

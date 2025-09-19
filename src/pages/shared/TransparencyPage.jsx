@@ -10,18 +10,26 @@ const TransparencyPage = () => {
   const { t } = useLanguage();
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-gradient-to-t from-blue-600 to-indigo-400 text-white p-4">
-        <div className="flex items-center justify-between mb-4">
-          <button onClick={() => navigate(-1)} className="mr-4">
-            <ArrowLeft className="w-6 h-6" />
+    <div className="min-h-screen bg-gray-50 w-full ">
+      {/* Mobile-optimized header */}
+      <div className="bg-gradient-to-t from-blue-600 to-indigo-400 text-white p-3 md:p-6 sticky top-0 z-10 w-full">
+        <div className="flex items-center justify-between">
+          <button 
+            onClick={() => navigate(-1)} 
+            className="p-2 hover:bg-white/10 rounded-lg transition-colors touch-manipulation"
+            aria-label="Go back"
+          >
+            <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
-          <h1 className="text-xl font-bold">{t('transparency.title')}</h1>
-          <div className="w-6 h-6"></div>
+          <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-center flex-1 mx-2 sm:mx-4 truncate">
+            {t('transparency.title')}
+          </h1>
+          <div className="w-9 h-9 sm:w-10 sm:h-10"></div>
         </div>
       </div>
 
-      <div className="p-4">
+      {/* Mobile-optimized content */}
+      <div className="p-2 sm:p-4 md:p-6 lg:p-8 max-w-7xl mx-auto">
         <TransparencyDashboard issues={MOCK_ISSUES} />
       </div>
     </div>
