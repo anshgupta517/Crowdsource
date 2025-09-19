@@ -20,8 +20,21 @@ const CitizenDashboard = ({
     <div className="min-h-screen bg-gray-150 pb-20">
       <div className="bg-gradient-to-t from-blue-600 to-indigo-400 text-white p-4">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-l font-bold">{t('dashboard.title')} ({t('dashboard.subtitle')})</h1>
+          <h1 className="text-l font-bold">{t('dashboard.title')}</h1>
           <div className="flex gap-2">
+
+            <button
+              onClick={() => {
+                const currentLang = localStorage.getItem('language') || 'en';
+                const newLang = currentLang === 'en' ? 'hi' : 'en';
+                localStorage.setItem('language', newLang);
+                window.location.reload();
+              }}
+              className="px-3 py-1 bg-white text-black bg-opacity-20 rounded-full text-xs flex items-center gap-1"
+            >
+              <Globe className="w-4 h-4" />
+              {localStorage.getItem('language') === 'hi' ? 'EN' : 'हिं'}
+            </button>
             <button
               onClick={() => switchRole('admin')}
               className="px-3 py-1 bg-white text-black bg-opacity-20 rounded-full text-xs"

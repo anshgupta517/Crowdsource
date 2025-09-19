@@ -15,7 +15,6 @@ export const translations = {
     
     // Dashboard
     'dashboard.title': 'Civic Reporter',
-    'dashboard.subtitle': 'citizen app',
     'dashboard.active': 'Active',
     'dashboard.resolved': 'Resolved',
     'dashboard.coreports': 'Co-reports',
@@ -56,7 +55,6 @@ export const translations = {
     
     // Dashboard
     'dashboard.title': 'नागरिक रिपोर्टर',
-    'dashboard.subtitle': 'नागरिक ऐप',
     'dashboard.active': 'सक्रिय',
     'dashboard.resolved': 'हल',
     'dashboard.coreports': 'सह-रिपोर्ट्स',
