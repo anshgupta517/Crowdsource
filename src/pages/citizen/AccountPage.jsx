@@ -48,7 +48,7 @@ const AccountPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="max-w-md mx-auto bg-white text-black min-h-screen pb-20">
       <div className="bg-gradient-to-t from-blue-600 to-indigo-400 text-white p-4">
         <div className="flex items-center justify-between mb-4">
           <button onClick={() => navigate('/')} className="mr-4">

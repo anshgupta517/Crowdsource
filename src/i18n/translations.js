@@ -14,7 +14,7 @@ export const translations = {
     'common.back': 'Back',
     
     // Dashboard
-    'dashboard.title': 'Civic Reporter',
+    'dashboard.title': 'CityMitra',
     'dashboard.active': 'Active',
     'dashboard.resolved': 'Resolved',
     'dashboard.coreports': 'Co-reports',
@@ -54,7 +54,7 @@ export const translations = {
     'common.back': 'वापस',
     
     // Dashboard
-    'dashboard.title': 'नागरिक रिपोर्टर',
+    'dashboard.title': 'Cityमित्र',
     'dashboard.active': 'सक्रिय',
     'dashboard.resolved': 'हल',
     'dashboard.coreports': 'सह-रिपोर्ट्स',
