@@ -33,7 +33,7 @@ const CitizenDashboard = ({
               className="px-3 py-1 bg-white text-black bg-opacity-20 rounded-full text-xs flex items-center gap-1"
             >
               <Globe className="w-4 h-4" />
-              {localStorage.getItem('language') === 'hi' ? 'English' : 'हिन्दी'}
+              {localStorage.getItem('language') === 'hi' ? 'EN' : 'हिं'}
             </button>
             <button
               onClick={() => switchRole('admin')}
