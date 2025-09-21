@@ -122,10 +122,10 @@ const CitizenDashboard = ({
           </div>
         ))}
       </div>
-      <div className='flex justify-center items-center mt-6'>
+      <div className='hidden sm:flex justify-center items-center mt-6'>
         <p className='text-sm text-gray-500'>Scan the QR code to view on mobile</p>
       </div>
-      <div className='flex justify-center items-center p-2 mt-2 hover:scale-105 transition-all duration-200'>
+      <div className='hidden sm:flex justify-center items-center p-2 mt-2 hover:scale-105 transition-all duration-200'>
         <Image src={assets.qrcode} alt='qrcode' className="rounded-lg border-2 border-emerald-300" />
       </div>
 
