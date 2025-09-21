@@ -35,13 +35,20 @@ export const ISSUE_CATEGORIES = {
     priority: 'low',
     icon: '🏗️',
     color: '#6366f1'
+  },
+  'Others': {
+    subcategories: ['Miscellaneous'],
+    department: 'General Services',
+    priority: 'low',
+    icon: '🔧',
+    color: '#10b981'
   }
 };
 
 export const MOCK_ISSUES = [
   {
     id: 1,
-    title: 'Large Pothole on Main Street',
+    title: 'मुख्य सड़क पर बड़ा गड्ढा',
     category: 'Road & Traffic',
     subcategory: 'Potholes',
     description: 'दुर्ग रेलवे स्टेशन के पास गहरे गड्ढे से यातायात में दिक्कत',
@@ -86,7 +93,7 @@ export const MOCK_ISSUES = [
   },
   {
     id: 4,
-    title: 'Water Leakage',
+    title: 'पानी का रिसाव',
     category: 'Public Utilities',
     subcategory: 'Water Supply',
     description: 'Major water leakage from pipeline causing waterlogging',

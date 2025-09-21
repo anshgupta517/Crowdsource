@@ -57,10 +57,17 @@ const CivicIssueApp = ({ initialRole = 'citizen', initialScreen = 'dashboard' })
       photo: null
     };
   });
-  const [reportStep, setReportStep] = useState(() => {
-    const savedReportStep = localStorage.getItem('reportStep');
-    return savedReportStep ? parseInt(savedReportStep) : 1;
-  });
+  const [reportStep, setReportStep] = useState(1);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const step = searchParams.get('step');
+    if (step && !isNaN(step)) {
+      setReportStep(parseInt(step));
+    } else {
+      setReportStep(1);
+    }
+  }, [location.search]);
   const [filterStatus, setFilterStatus] = useState(() => localStorage.getItem('filterStatus') || 'all');
   const [filterCategory, setFilterCategory] = useState(() => localStorage.getItem('filterCategory') || 'all');
 
@@ -82,10 +89,6 @@ const CivicIssueApp = ({ initialRole = 'citizen', initialScreen = 'dashboard' })
   }, [newIssue]);
 
   useEffect(() => {
-    localStorage.setItem('reportStep', reportStep.toString());
-  }, [reportStep]);
-
-  useEffect(() => {
     localStorage.setItem('filterStatus', filterStatus);
   }, [filterStatus]);
 
@@ -96,7 +99,7 @@ const CivicIssueApp = ({ initialRole = 'citizen', initialScreen = 'dashboard' })
   // Navigation functions
   const navigateTo = (screen) => {
     if (screen === 'report-issue') {
-      navigate('/report-issue');
+      navigate('/report-issue/?step=1');
     } else if (screen === 'my-reports') {
       navigate('/my-reports');
     } else {
@@ -118,11 +121,10 @@ const CivicIssueApp = ({ initialRole = 'citizen', initialScreen = 'dashboard' })
   const goBack = () => {
     if (currentScreen === 'report-issue') {
       if (reportStep > 1) {
-        setReportStep(reportStep - 1);
+        navigate(`/report-issue/?step=${reportStep - 1}`);
       } else {
         navigate('/');
         setCurrentScreen('dashboard');
-        setReportStep(1);
         setNewIssue({ title: '', category: '', subcategory: '', description: '', location: '', photo: null });
       }
     } else {
@@ -163,12 +165,12 @@ const CivicIssueApp = ({ initialRole = 'citizen', initialScreen = 'dashboard' })
   // Report issue functions (citizen)
   const handleCategorySelect = (category) => {
     setNewIssue({ ...newIssue, category, subcategory: '' });
-    setReportStep(2);
+    navigate('/report-issue/?step=2');
   };
 
   const handleSubcategorySelect = (subcategory) => {
     setNewIssue({ ...newIssue, subcategory });
-    setReportStep(3);
+    navigate('/report-issue/?step=3');
   };
 
   const handleSubmitIssue = () => {
