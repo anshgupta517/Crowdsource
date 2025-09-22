@@ -1,5 +1,5 @@
 import React from 'react';
-import { Camera, MapPin, Send, ArrowLeft } from 'lucide-react';
+import { Camera, MapPin, Send, ArrowLeft, Mic } from 'lucide-react';
 import { ISSUE_CATEGORIES } from '../../data/mockData';
 
 const ReportIssueScreen = ({
@@ -128,13 +128,18 @@ const ReportIssueScreen = ({
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
-              <textarea
-                value={newIssue.description}
-                onChange={(e) => setNewIssue({...newIssue, description: e.target.value})}
-                placeholder="Describe the issue in detail..."
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                rows="4"
-              />
+              <div className="flex">
+                <textarea
+                  value={newIssue.description}
+                  onChange={(e) => setNewIssue({...newIssue, description: e.target.value})}
+                  placeholder="Describe the issue in detail..."
+                  className="flex-1 p-3 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  rows="4"
+                />
+                <button className="px-4 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 hover:scale-105 transition-all duration-200 flex items-center justify-center">
+                  <Mic className="w-5 h-5" />
+                </button>
+              </div>
             </div>
 
             <div>
